@@ -16,7 +16,6 @@ class DepthCalculator {
   constructor() {
     this.curent = 1;
     this.maxCurent = 0;
-    this.iteration = 1;
     this.result = 0;
   }
 
@@ -26,20 +25,18 @@ class DepthCalculator {
 
     arr.forEach(item => {
       if (Array.isArray(item)) {
-        this.iteration++;
         this.curent++;
         this.calculateDepth(item);
       }
     });
+
     this.maxCurent = Math.max(this.maxCurent, this.curent);
     this.curent--;
 
-    this.iteration--;
-    if (this.iteration === 0) {
+    if (this.curent === 0) {
       this.result = this.maxCurent;
       this.curent = 1;
       this.maxCurent = 0;
-      this.iteration = 1;
     }
 
     return this.result;
